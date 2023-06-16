@@ -49,5 +49,9 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    has_many :subs,
+    foreign_key: :moderater_id,
+    class_name: :Sub
+
 
 end

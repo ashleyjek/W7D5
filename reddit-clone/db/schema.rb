@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_143722) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_151128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subs", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.bigint "moderater_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderater_id"], name: "index_subs_on_moderater_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
@@ -24,4 +33,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_143722) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "subs", "users", column: "moderater_id"
 end
