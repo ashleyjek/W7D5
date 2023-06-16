@@ -3,7 +3,7 @@ class CreateSubs < ActiveRecord::Migration[7.0]
     create_table :subs do |t|
       t.string :title, null: false
       t.text :description
-      t.references :moderater, null: false, foreign_key: {to_table: :users}
+      t.references :moderater, foreign_key: {to_table: :users}
       t.timestamps
     end
   end

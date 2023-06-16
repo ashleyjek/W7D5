@@ -10,10 +10,11 @@
 #  updated_at   :datetime         not null
 #
 class Sub < ApplicationRecord
-    validates :title, presence: true
+    validates :title, length: {minimum: 1}, presence: true
 
-    belongs_to :moderator,
+    belongs_to :moderater,
     foreign_key: :moderater_id,
-    class_name: :User
-    
+    class_name: :User,
+    inverse_of: :subs
+
 end
